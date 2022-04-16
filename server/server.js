@@ -15,19 +15,56 @@ app.listen(PORT, function() {
   console.log(`The server is running! localhost:${PORT}`);
 })
 
-// // Define a GET route on our server:
-// app.get('/i', (req, res) => {
-//   console.log('GET /');
-//   res.send();
-// })
+let history = [];
+let calcObject;
 
-// // Define a POST route on our server:
-// app.post('/', (req, res) => {
-//   console.log('POST /');
-//   let newInstrument = req.body;
-//   musicalInstruments.push(newInstrument);
-//   res.sendStatus(200);
-// })
+
+function endEquation (){
+  let answer;
+  let resultObject ={
+numOne: calcObject.numOne,
+numTwo: calcObject.numTwo,
+operator: calcObject.operator,
+total: answer
+  }
+
+//
+  switch (calcObject.operator) {
+    case '+':
+      answer =  Number(calcObject.numOne) + Number(calcObject.numTwo)
+      break;
+    case '-':
+      answer = Number(calcObject.numOne) - Number(calcObject.numTwo) 
+      break;
+      case '*':
+     answer = Number(calcObject.numOne) * Number(calcObject.numTwo) 
+      break;
+     case '/':
+      answer = Number(calcObject.numOne) / Number(calcObject.numTwo) 
+       break;
+  }
+ history.push(resultObject)
+}
+
+
+
+app.get('/calculation', (req, res) => {
+  console.log('GET /calculation');
+  res.send(history);
+})
+
+// receives object pushes into rew array
+app.post('/calculation', (req, res) => {
+  console.log('POST /calculation');
+  console.log(req.body)
+  calcObject = req.body;
+endEquation();
+  // history.push( );
+  res.sendStatus(200);
+})
+
+
+
 
 
 
