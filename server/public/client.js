@@ -30,9 +30,11 @@ operator: mathOperator
       })
  
   }
-  // clears inputs with button click
+  // clears inputs and empties total with button click
 function cButton(){
   $('input').val(''); 
+  $('.total').empty();
+
 }
 // global variable mathOperator is set equal to (this) 
 //which is the math operator text when clicked. ie '+'
@@ -50,13 +52,12 @@ function renderHistory(){
     .then(function (response) {
        console.log(response);
       for (let equation of response) {
-          let total = Math.round(`${equation.total}`)
+          let total = Math.round(`${equation.total}`) 
+          $('.total').empty();
         $('.total').append(total)
-            ('.total').empty();
         $('#history').append(` 
-          <li>${equation.numOne} ${equation.operator} ${equation.numTwo} = ${equation.total}</li>
+          <li>${equation.numOne} ${equation.operator} ${equation.numTwo} = ${total}</li>
         `)
       }
-      
     })
 }

@@ -3,7 +3,16 @@ body {
     text-align: center;
 }
 #history {
-color: black;
 list-style-type: none;
-
+font-size: 30pt;
 }
+
+.total {
+font-size: 30pt;
+}
+
+h1{
+    font-size: 30pt; 
+}
+
+
