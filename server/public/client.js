@@ -3,8 +3,9 @@ $(document).ready(onReady)
 
 function onReady(){
 $('.mathOp').on('click', mathButton)
- $('#equalButton').on('click', createEquation)
+ $('#equalButton').on('click',createEquation)
  $('#clearButton').on('click', cButton)
+
 }
 
 let mathOperator;
@@ -30,7 +31,7 @@ operator: mathOperator
       })
  
   }
-  // clears inputs and empties total with button click
+  // clears inputs with button click
 function cButton(){
   $('input').val(''); 
   $('.total').empty();
@@ -42,7 +43,6 @@ function mathButton() {
 // console.log($(this).text())
 mathOperator = $(this).text()
 }
-
 // sends get request to server and then appends response to DOM
 function renderHistory(){
   $.ajax({
@@ -51,13 +51,22 @@ function renderHistory(){
   }) // uses response as a parameter, loops through response  
     .then(function (response) {
        console.log(response);
+       $('.history').empty();
       for (let equation of response) {
           let total = Math.round(`${equation.total}`) 
           $('.total').empty();
         $('.total').append(total)
-        $('#history').append(` 
+        $('.history').append(` 
           <li>${equation.numOne} ${equation.operator} ${equation.numTwo} = ${total}</li>
         `)
       }
     })
 }
+
+
+    
+
+
+
+
+

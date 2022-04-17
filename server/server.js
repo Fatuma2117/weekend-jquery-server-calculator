@@ -22,15 +22,7 @@ let calcObject;
 let answer;
 
 function endEquation (){
-
-  
-//created a new object with keys of num1,num2, operator, total 
-//with a new key(total) for answer value from switch 
-
-
-
 //  the value of the operator is compared with values of each case
-//
   switch (calcObject.operator) {
     case '+':
      answer  =  Number(calcObject.numOne) + Number(calcObject.numTwo)
@@ -54,17 +46,17 @@ function endEquation (){
     total: answer
       }
 
-  console.log(answer)
+  // console.log(answer)
   // console.log(resultObject)
 history.push(resultObject)
 //  // push the resultObject into new global array
  console.log(history)
 }
 
-// defines post route and takes data from math function
+// defines post route and takes data from endEquation
 app.post('/calculation', (req, res) => {
-  console.log('POST /calculation');
-  console.log(req.body)
+  // console.log('POST /calculation');
+  // console.log(req.body)
   //request from server.body = a new variable
   calcObject = req.body;
   //calls the function that does the math calculations
@@ -76,7 +68,7 @@ endEquation();
 //defined get route 
 //sends the history array as response to renderHistory
 app.get('/calculation', (req, res) => {
-  console.log('GET /calculation');
+  // console.log('GET /calculation');
   res.send(history);
 })
 

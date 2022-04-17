@@ -2,7 +2,7 @@ body {
     background-color: bisque;
     text-align: center;
 }
-#history {
+.history {
 list-style-type: none;
 font-size: 30pt;
 }
