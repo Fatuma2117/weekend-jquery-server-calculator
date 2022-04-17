@@ -19,20 +19,20 @@ app.listen(PORT, function() {
 
 let history = [];
 let calcObject;
-
+let answer;
 
 function endEquation (){
 
-  let answer;
-//created a new object with values of num1,num2, operator, total 
+  
+//created a new object with keys of num1,num2, operator, total 
 //with a new key(total) for answer value from switch 
+let resultObject = {
+  numOne: calcObject.numOne,
+  numTwo: calcObject.numTwo,
+  operator: calcObject.operator,
+  total: answer
+    }
 
-  let resultObject ={
-numOne: calcObject.numOne,
-numTwo: calcObject.numTwo,
-operator: calcObject.operator,
-total: answer
-  }
 
 //  the value of the operator is compared with values of each case
 //
@@ -48,10 +48,13 @@ total: answer
       break;
      case '/':
       answer = Number(calcObject.numOne) / Number(calcObject.numTwo) 
-       break;
+       break; 
+    
   }
+  console.log(answer)
+  // console.log(resultObject)
 history.push(resultObject)
- // push the resultObject into new array
+//  // push the resultObject into new array
  console.log(history)
 }
 
@@ -59,10 +62,10 @@ history.push(resultObject)
 app.post('/calculation', (req, res) => {
   console.log('POST /calculation');
   console.log(req.body)
+  //request from server.body = a new variable
   calcObject = req.body;
   //calls the function that does the math calculations
 endEquation();
-  // history.push();
   // sends back ok 
   res.sendStatus(200);
 })

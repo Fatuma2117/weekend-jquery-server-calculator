@@ -39,9 +39,6 @@ function cButton(){
 function mathButton() {
 // console.log($(this).text())
 mathOperator = $(this).text()
-
-
-
 }
 
 // sends get request to server and then appends response to DOM
@@ -51,11 +48,12 @@ function renderHistory(){
     url: '/calculation'
   }) // uses response as a parameter, loops through response  
     .then(function (response) {
-      console.log(response);
+       console.log(response);
       for (let equation of response) {
-        $('#history').append(`
+        $('#history').append(` 
           <li>${equation.numOne} ${equation.operator} ${equation.numTwo} = ${equation.total}</li>
         `)
+       
       }
     })
 }
