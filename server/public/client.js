@@ -50,10 +50,13 @@ function renderHistory(){
     .then(function (response) {
        console.log(response);
       for (let equation of response) {
+          let total = Math.round(`${equation.total}`)
+        $('.total').append(total)
+            ('.total').empty();
         $('#history').append(` 
           <li>${equation.numOne} ${equation.operator} ${equation.numTwo} = ${equation.total}</li>
         `)
-       
       }
+      
     })
 }

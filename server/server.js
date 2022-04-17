@@ -26,12 +26,7 @@ function endEquation (){
   
 //created a new object with keys of num1,num2, operator, total 
 //with a new key(total) for answer value from switch 
-let resultObject = {
-  numOne: calcObject.numOne,
-  numTwo: calcObject.numTwo,
-  operator: calcObject.operator,
-  total: answer
-    }
+
 
 
 //  the value of the operator is compared with values of each case
@@ -50,11 +45,19 @@ let resultObject = {
       answer = Number(calcObject.numOne) / Number(calcObject.numTwo) 
        break; 
     
-  }
+  } //created a new object with keys of num1,num2, operator, total 
+  //with a new key(total) for answer value from switch 
+  let resultObject = {
+    numOne: calcObject.numOne,
+    numTwo: calcObject.numTwo,
+    operator: calcObject.operator,
+    total: answer
+      }
+
   console.log(answer)
   // console.log(resultObject)
 history.push(resultObject)
-//  // push the resultObject into new array
+//  // push the resultObject into new global array
  console.log(history)
 }
 
@@ -70,7 +73,8 @@ endEquation();
   res.sendStatus(200);
 })
 
-//defined get route and sends the history array as response
+//defined get route 
+//sends the history array as response to renderHistory
 app.get('/calculation', (req, res) => {
   console.log('GET /calculation');
   res.send(history);
